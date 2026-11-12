@@ -8,7 +8,7 @@ Format orientiert sich an [Keep a Changelog](https://keepachangelog.com/de/1.1.0
 - App- und Extension-Icon (lila Verlauf mit Pause/Play-Symbol).
 - Statuszeile im Panel (Verbunden / Video gefunden / Nicht verbunden).
 - `install.sh`: sauberer lokaler Installer/Updater (bereinigt alte Builds, signiert, registriert die Extension).
-- README, Changelog, Lizenz.
+- README, Changelog, Lizenz, CONTRIBUTING.
 
 ### Geändert
 - Sleep Timer und Wach-Check komplett neu implementiert (`content.js`):

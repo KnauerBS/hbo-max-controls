@@ -4,6 +4,9 @@
 
 Lokale Safari Web Extension (macOS) für HBO Max: feines Spulen, nächste Folge, Sleep Timer und „Bist du noch wach?“-Check. Alles läuft lokal im Browser, es werden keine Daten gesendet.
 
+> [!TIP]
+> **Mitmachen erwünscht!** Aktuell gibt es nur die Safari-Version für macOS. Ich freue mich über Beiträge für **andere Browser** (Chrome, Firefox, Edge …) und **andere Betriebssysteme** (Windows, Linux, iOS/iPadOS …). Die Logik in `content.js` und das Panel (`popup.*`) sind reine WebExtension-Technik und lassen sich weitgehend wiederverwenden. Siehe [CONTRIBUTING.md](CONTRIBUTING.md).
+
 ## Funktionen
 
 | Funktion | Beschreibung |
@@ -52,6 +55,10 @@ install.sh                        Lokaler Installer/Updater
 ## Hinweis
 
 Inoffizielles Projekt, nicht mit HBO Max / Warner Bros. Discovery verbunden. Markennamen gehören ihren Inhabern.
+
+## Mitwirken
+
+Pull Requests und Issues sind willkommen – besonders für Ports auf andere Browser und Betriebssysteme. Details in [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Lizenz
 
