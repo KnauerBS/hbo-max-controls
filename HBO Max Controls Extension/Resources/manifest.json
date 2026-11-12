@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "HBO Max Controls",
-  "version": "1.4.0",
-  "description": "Lokale Tastatursteuerung, Sleep Timer & Awake Check für HBO Max in Safari.",
+  "version": "1.4.1",
+  "description": "Local keyboard controls, sleep timer & awake check for HBO Max in Safari.",
   "icons": {
     "48": "icons/icon-48.png",
     "96": "icons/icon-96.png",

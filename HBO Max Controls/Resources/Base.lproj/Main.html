@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'">
@@ -9,44 +9,44 @@
 </head>
 <body>
     <header>
-        <img src="../Icon.png" width="80" height="80" alt="HBO Max Controls Icon">
+        <img src="../Icon.png" width="80" height="80" alt="HBO Max Controls icon">
         <h1>HBO Max Controls</h1>
     </header>
 
     <div class="status-card">
         <div class="status-badge">
             <span class="status-icon"></span>
-            <span class="status-text state-unknown">Status wird geprüft …</span>
-            <span class="status-text state-on">Erweiterung aktiv</span>
-            <span class="status-text state-off">Erweiterung inaktiv</span>
-            <span class="status-text state-error">Erweiterung nicht gefunden</span>
-            <span class="status-text state-not-in-applications">App nicht in Programme</span>
+            <span class="status-text state-unknown">Checking status …</span>
+            <span class="status-text state-on">Extension enabled</span>
+            <span class="status-text state-off">Extension disabled</span>
+            <span class="status-text state-error">Extension not found</span>
+            <span class="status-text state-not-in-applications">App not in Applications</span>
         </div>
 
-        <!-- Anleitung: nur wenn nicht aktiv -->
+        <!-- Instructions: only when not enabled -->
         <div class="instructions">
             <p class="hint state-not-in-applications">
-                ⚠️ Die App muss in <strong>/Programme</strong> liegen, damit Safari die Erweiterung erkennt.
-                Bitte verschiebe die App nach Programme und starte sie neu.
+                ⚠️ The app must be located in <strong>/Applications</strong> so Safari can detect the extension.
+                Please move the app to Applications and restart it.
             </p>
             <ol class="steps state-off state-error state-unknown">
-                <li>Stelle sicher, dass die App in <strong>Programme</strong> liegt</li>
-                <li>Öffne <strong>Safari → Einstellungen → Erweiterungen</strong></li>
-                <li>Setze den Haken bei <strong>HBO Max Controls</strong></li>
-                <li>Kehre hierher zurück – der Status aktualisiert sich</li>
+                <li>Make sure the app is in <strong>Applications</strong></li>
+                <li>Open <strong>Safari → Settings → Extensions</strong></li>
+                <li>Check the box for <strong>HBO Max Controls</strong></li>
+                <li>Come back here – the status will update</li>
             </ol>
         </div>
 
         <p class="success-hint state-on">
-            ✅ Alles bereit. Das Popup der Erweiterung erscheint in der Safari-Toolbar.
+            ✅ All set. The extension popup appears in the Safari toolbar.
         </p>
     </div>
 
     <div class="actions">
-        <button class="btn-primary open-preferences">Safari Erweiterungen öffnen</button>
-        <button class="btn-secondary open-settings-url">Safari direkt öffnen (Fallback)</button>
+        <button class="btn-primary open-preferences">Open Safari Extensions</button>
+        <button class="btn-secondary open-settings-url">Open Safari directly (fallback)</button>
     </div>
 
-    <p class="refresh-hint">Nach dem Aktivieren in Safari: App neu starten um den Status zu sehen.</p>
+    <p class="refresh-hint">After enabling in Safari: restart the app to see the status.</p>
 </body>
 </html>

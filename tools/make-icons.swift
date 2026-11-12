@@ -9,7 +9,7 @@ func render(size: Int, fullBleedMask: Bool = true) -> NSBitmapImageRep {
     NSGraphicsContext.current = NSGraphicsContext(bitmapImageRep: rep)
     let s = CGFloat(size)
     let u = s / 1024
-    // macOS-Icon-Raster: 824pt Fläche auf 1024pt Canvas
+    // macOS icon grid: 824pt artwork on a 1024pt canvas
     let body = NSRect(x: 100*u, y: 100*u, width: 824*u, height: 824*u)
     let path = NSBezierPath(roundedRect: body, xRadius: 185*u, yRadius: 185*u)
 

@@ -1,29 +1,34 @@
 # Changelog
 
-Format orientiert sich an [Keep a Changelog](https://keepachangelog.com/de/1.1.0/).
+Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
+
+## [1.4.1] – 2026-11-12
+
+### Changed
+- Entire project (README, docs, UI strings, code comments, installer) is now in English.
 
 ## [1.4.0] – 2026-11-12
 
-### Hinzugefügt
-- App- und Extension-Icon (lila Verlauf mit Pause/Play-Symbol).
-- Statuszeile im Panel (Verbunden / Video gefunden / Nicht verbunden).
-- `install.sh`: sauberer lokaler Installer/Updater (bereinigt alte Builds, signiert, registriert die Extension).
-- README, Changelog, Lizenz, CONTRIBUTING.
+### Added
+- App and extension icon (purple gradient with pause/play symbol).
+- Status line in the panel (Connected / Video found / Not connected).
+- `install.sh`: clean local installer/updater (removes old builds, signs, registers the extension).
+- README, changelog, license, CONTRIBUTING.
 
-### Geändert
-- Sleep Timer und Wach-Check komplett neu implementiert (`content.js`):
-  - Zeitstempel-basierter Timer, unabhängig von verpassten Panel-Nachrichten.
-  - Pausiert alle spielenden Videos; Video-Suche auch im Shadow-DOM.
-  - Nach Ablauf bleibt die Wiedergabe gesperrt, falls HBO selbst weiterspielt (z. B. nächste Folge); Auto-Next ist dann ebenfalls gesperrt.
-  - Toast und „Bist du noch wach?“-Dialog funktionieren auch im Vollbild.
-  - Der Dialog schließt nur per Button bzw. Enter/Leertaste/Esc; nur echte Benutzereingaben zählen als Aktivität.
+### Changed
+- Sleep timer and awake check completely reimplemented (`content.js`):
+  - Timestamp-based timer, independent of missed panel messages.
+  - Pauses all playing videos; video lookup also covers the shadow DOM.
+  - After expiry, playback stays locked if HBO resumes on its own (e.g. next episode); auto-next is locked as well.
+  - Toast and "Are you still awake?" dialog also work in fullscreen.
+  - The dialog only closes via button or Enter/Space/Esc; only genuine user input counts as activity.
 
-### Behoben
-- Content-Script lief nur auf `play.hbomax.com`, jetzt auf `*.hbomax.com` und `*.max.com`.
-- Panel öffnete auf `www.hbomax.com` einen zusätzlichen HBO-Tab (zu enge Host-Erkennung).
+### Fixed
+- Content script only ran on `play.hbomax.com`, now runs on `*.hbomax.com` and `*.max.com`.
+- Panel opened an extra HBO tab on `www.hbomax.com` (host detection too narrow).
 
 ## [1.3.0]
-- Sleep Timer, Wach-Check und Auto-Next im Panel.
+- Sleep timer, awake check and auto-next in the panel.
 
 ## [1.0.0]
-- Erste Version: Tastenkürzel für ±0,5 s und „Nächste Folge“.
+- First version: keyboard shortcuts for ±0.5 s and "next episode".

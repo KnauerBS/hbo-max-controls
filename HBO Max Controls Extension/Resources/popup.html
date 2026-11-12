@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="de">
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,54 +12,54 @@
         <img src="icons/hbo-controls.svg" alt="">
         <div class="title-wrap">
           <span>HBO Max Controls</span>
-          <span class="version-tag">v1.4.0</span>
+          <span class="version-tag">v1.4.1</span>
         </div>
       </header>
 
       <section class="btn-group">
-        <button data-command="seek-back"><strong>−0,5 s</strong><kbd>⌥⌘,</kbd></button>
-        <button data-command="seek-forward"><strong>+0,5 s</strong><kbd>⌥⌘.</kbd></button>
-        <button class="next" data-command="next-episode"><strong>Nächste Folge</strong><kbd>⌥N</kbd></button>
+        <button data-command="seek-back"><strong>−0.5 s</strong><kbd>⌥⌘,</kbd></button>
+        <button data-command="seek-forward"><strong>+0.5 s</strong><kbd>⌥⌘.</kbd></button>
+        <button class="next" data-command="next-episode"><strong>Next episode</strong><kbd>⌥N</kbd></button>
       </section>
 
       <section class="settings-group">
         <label class="toggle">
           <input id="auto-next" type="checkbox">
-          <span>Nächste Folge automatisch starten</span>
+          <span>Start next episode automatically</span>
         </label>
 
         <div class="field-row">
           <label for="sleep-timer-select">😴 Sleep Timer</label>
           <select id="sleep-timer-select">
-            <option value="0">Aus</option>
-            <option value="1">1 Min. (Debug)</option>
-            <option value="15">15 Min.</option>
-            <option value="30">30 Min.</option>
-            <option value="45">45 Min.</option>
-            <option value="60">60 Min. (1h)</option>
-            <option value="90">90 Min.</option>
-            <option value="120">120 Min. (2h)</option>
+            <option value="0">Off</option>
+            <option value="1">1 min (Debug)</option>
+            <option value="15">15 min</option>
+            <option value="30">30 min</option>
+            <option value="45">45 min</option>
+            <option value="60">60 min (1h)</option>
+            <option value="90">90 min</option>
+            <option value="120">120 min (2h)</option>
           </select>
         </div>
         <div id="sleep-timer-status" class="timer-status hidden">
           <span id="sleep-timer-countdown">⏱ --:--</span>
-          <button id="cancel-sleep-timer" class="small-btn">Stoppen</button>
+          <button id="cancel-sleep-timer" class="small-btn">Stop</button>
         </div>
 
         <div class="field-row">
-          <label for="awake-check-select">💤 Wach-Check</label>
+          <label for="awake-check-select">💤 Awake Check</label>
           <select id="awake-check-select">
-            <option value="0">Aus</option>
-            <option value="1">1 Min. (Debug)</option>
-            <option value="5">5 Min.</option>
-            <option value="15">15 Min.</option>
-            <option value="30">30 Min.</option>
-            <option value="60">60 Min. (Standard)</option>
-            <option value="90">90 Min.</option>
+            <option value="0">Off</option>
+            <option value="1">1 min (Debug)</option>
+            <option value="5">5 min</option>
+            <option value="15">15 min</option>
+            <option value="30">30 min</option>
+            <option value="60">60 min (default)</option>
+            <option value="90">90 min</option>
           </select>
         </div>
       </section>
-      <div id="status" class="status">Verbinde …</div>
+      <div id="status" class="status">Connecting …</div>
     </main>
   </body>
 </html>

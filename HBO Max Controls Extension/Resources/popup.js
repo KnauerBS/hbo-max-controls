@@ -75,7 +75,7 @@ function updateSleepTimerUI(sleepTimerEnd) {
         sleepTimerStatus.classList.add("hidden");
         sleepTimerSelect.value = "0";
       } else {
-        sleepTimerCountdown.textContent = `⏱ ${formatRemaining(remaining)} verbleibend`;
+        sleepTimerCountdown.textContent = `⏱ ${formatRemaining(remaining)} remaining`;
       }
     };
     updateTime();
@@ -117,7 +117,7 @@ cancelSleepTimerBtn.addEventListener("click", () => {
   send("cancel-sleep-timer");
 });
 
-// Awake Check (Inaktivitäts-Check)
+// Awake Check (inactivity check)
 const awakeCheckSelect = document.querySelector("#awake-check-select");
 browser.storage.local.get("awakeCheckMinutes").then(({ awakeCheckMinutes }) => {
   if (typeof awakeCheckMinutes !== "undefined") {
@@ -148,7 +148,7 @@ awakeCheckSelect.addEventListener("change", () => {
   } catch (_) {}
 })();
 
-// Verbindungsstatus zur Seite (zeigt, ob das Content-Script läuft und ein Video gefunden wurde)
+// Connection status to the page (shows whether the content script is running and a video was found)
 (async () => {
   const el = document.querySelector("#status");
   if (!el) return;
@@ -157,14 +157,14 @@ awakeCheckSelect.addEventListener("change", () => {
     const res = await browser.tabs.sendMessage(tab.id, { command: "get-status" });
     if (res?.ok) {
       el.textContent = res.hasVideo
-        ? (res.playing ? "● Verbunden – Video läuft" : "● Verbunden – Video pausiert")
-        : "● Verbunden – kein Video gefunden";
+        ? (res.playing ? "● Connected – video playing" : "● Connected – video paused")
+        : "● Connected – no video found";
       el.classList.add(res.hasVideo ? "ok" : "warn");
     } else {
       throw new Error("no reply");
     }
   } catch (_) {
-    el.textContent = "● Nicht verbunden – Seite neu laden";
+    el.textContent = "● Not connected – reload the page";
     el.classList.add("err");
   }
 })();

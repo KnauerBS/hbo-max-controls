@@ -1,25 +1,26 @@
-# Mitwirken
+# Contributing
 
-Danke fürs Interesse! Das Projekt gibt es bisher nur für **Safari auf macOS**. Hilfe ist besonders willkommen bei:
+Thanks for your interest! So far the project only exists for **Safari on macOS**. Help is especially welcome with:
 
-## Gesuchte Ports
+## Ports wanted
 
-| Ziel | Hinweise |
+| Target | Notes |
 | --- | --- |
-| Chrome / Edge / Brave (MV3) | `content.js` und `popup.*` sind fast unverändert nutzbar; `browser.*` durch `chrome.*` bzw. Polyfill ersetzen, `manifest.json` anpassen |
-| Firefox | `browser.*` ist nativ vorhanden; Manifest anpassen (`browser_specific_settings`) |
-| Windows / Linux | Installer/Updater als Ersatz für `install.sh` (z. B. Skript oder Paket); Extension selbst ist plattformunabhängig |
-| iOS / iPadOS Safari | Xcode-Ziel für iOS ergänzen, Panel für Touch anpassen (Tastenkürzel entfallen) |
+| Chrome / Edge / Brave (MV3) | `content.js` and `popup.*` are usable almost unchanged; replace `browser.*` with `chrome.*` or use a polyfill, adapt `manifest.json` |
+| Firefox | `browser.*` is available natively; adapt the manifest (`browser_specific_settings`) |
+| Windows / Linux | An installer/updater replacing `install.sh` (e.g. script or package); the extension itself is platform-independent |
+| iOS / iPadOS Safari | Add an iOS Xcode target, adapt the panel for touch (keyboard shortcuts don't apply) |
 
-## Wie beitragen?
+## How to contribute
 
-1. Issue eröffnen oder kommentieren, damit nicht doppelt gearbeitet wird.
-2. Fork erstellen, Branch anlegen (z. B. `port/firefox`).
-3. Plattformspezifisches in eigene Ordner/Dateien legen (z. B. `firefox/`), gemeinsame Logik möglichst nicht duplizieren.
-4. Pull Request mit kurzer Beschreibung und Testhinweisen (Browser, Version, Betriebssystem).
+1. Open or comment on an issue so work isn't duplicated.
+2. Fork the repo and create a branch (e.g. `port/firefox`).
+3. Put platform-specific code in its own folders/files (e.g. `firefox/`) and avoid duplicating shared logic where possible.
+4. Open a pull request with a short description and test notes (browser, version, operating system).
 
-## Hinweise
+## Notes
 
-- Keine persönlichen Daten (Team-IDs, Pfade, E-Mail-Adressen) committen.
-- Änderungen bitte im [CHANGELOG](CHANGELOG.md) vermerken.
-- Mit dem Beitrag stimmst du der [MIT-Lizenz](LICENSE) zu.
+- Do not commit personal data (team IDs, paths, email addresses).
+- Please record changes in the [CHANGELOG](CHANGELOG.md).
+- All code, comments, docs and UI strings are written in English.
+- By contributing you agree to the [MIT License](LICENSE).

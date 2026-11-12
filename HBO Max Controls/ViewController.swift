@@ -27,7 +27,7 @@ class ViewController: NSViewController, WKNavigationDelegate, WKScriptMessageHan
     }
 
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        // Prüfen ob die App aus /Applications läuft
+        // Check whether the app is running from /Applications
         let bundlePath = Bundle.main.bundlePath
         let isInApplications = bundlePath.hasPrefix("/Applications") ||
                                bundlePath.hasPrefix("/Users/") && bundlePath.contains("/Applications/")
@@ -71,7 +71,7 @@ class ViewController: NSViewController, WKNavigationDelegate, WKScriptMessageHan
                 DispatchQueue.main.async {
                     if let error = error {
                         NSLog("HBO Max Controls: showPreferencesForExtension error: \(error)")
-                        // API fehlgeschlagen (z. B. Ad-hoc-Signatur) → Safari direkt öffnen + Hinweis
+                        // API failed (e.g. ad-hoc signature) → open Safari directly + show hint
                         self.openSafariDirectly()
                     }
                     // Kein terminate – App bleibt offen damit der User den Status sieht
@@ -79,7 +79,7 @@ class ViewController: NSViewController, WKNavigationDelegate, WKScriptMessageHan
             }
 
         case "open-settings-url":
-            // Fallback: Safari.app direkt öffnen
+            // Fallback: open Safari.app directly
             openSafariDirectly()
 
         default:
@@ -88,7 +88,7 @@ class ViewController: NSViewController, WKNavigationDelegate, WKScriptMessageHan
     }
 
     private func openSafariDirectly() {
-        // Safari öffnen – der User navigiert dann zu Einstellungen → Erweiterungen
+        // Open Safari – the user then navigates to Settings → Extensions
         let safariURL = URL(fileURLWithPath: "/Applications/Safari.app")
         NSWorkspace.shared.openApplication(
             at: safariURL,
@@ -98,8 +98,8 @@ class ViewController: NSViewController, WKNavigationDelegate, WKScriptMessageHan
                 // Safari nicht unter /Applications gefunden – Hinweis anzeigen
                 DispatchQueue.main.async {
                     let alert = NSAlert()
-                    alert.messageText = "Safari konnte nicht geöffnet werden"
-                    alert.informativeText = "Öffne Safari manuell und gehe zu:\nSafari → Einstellungen → Erweiterungen\nund aktiviere \"HBO Max Controls\"."
+                    alert.messageText = "Could not open Safari"
+                    alert.informativeText = "Open Safari manually and go to:\nSafari → Settings → Extensions\nand enable \"HBO Max Controls\"."
                     alert.alertStyle = .informational
                     alert.addButton(withTitle: "OK")
                     alert.runModal()

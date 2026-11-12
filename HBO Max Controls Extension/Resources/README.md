@@ -1,6 +1,6 @@
 # HBO Max Controls
 
-Safari-Erweiterung für `hbomax.com` / `max.com`. Siehe das README im Projektstamm.
+Safari extension for `hbomax.com` / `max.com`. See the README in the project root.
 
-- `⌥⌘,` / `⌥⌘.` — 0,5 s zurück / vor
-- `⌥N` — „Nächste Folge“
+- `⌥⌘,` / `⌥⌘.` — 0.5 s back / forward
+- `⌥N` — "Next episode"

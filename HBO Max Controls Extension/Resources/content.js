@@ -8,18 +8,18 @@
   // ───────────────────────── State ─────────────────────────
   const state = {
     autoNext: false,
-    sleepEnd: 0,          // absolute timestamp (ms) – Quelle: storage
-    sleepHandled: 0,      // sleepEnd-Wert, der bereits ausgelöst wurde
-    awakeMin: 60,         // 0 = aus
+    sleepEnd: 0,          // absolute timestamp (ms) – source: storage
+    sleepHandled: 0,      // sleepEnd value that has already been triggered
+    awakeMin: 60,         // 0 = off
     lastActivity: Date.now(),
-    hold: null,           // null | "sleep" | "awake" → Video bleibt pausiert
+    hold: null,           // null | "sleep" | "awake" → video stays paused
     modalOpen: false,
-    pausedByUs: [],       // Videos, die wir pausiert haben (für „weiterschauen“)
+    pausedByUs: [],       // videos we paused (for "keep watching")
   };
 
   browser.runtime.sendMessage({ type: "hbo-content-ready" }).catch(() => {});
 
-  // ───────────────────────── Video-Helfer ─────────────────────────
+  // ───────────────────────── Video helpers ─────────────────────────
   function collectVideos(root, out) {
     for (const v of root.querySelectorAll("video")) out.push(v);
     return out;
@@ -33,7 +33,7 @@
     return out;
   }
 
-  // Alle Videos; Shadow-DOM nur durchsuchen, wenn im normalen DOM keines ist
+  // All videos; only search the shadow DOM if the regular DOM has none
   function findVideos() {
     const light = collectVideos(document, []);
     return light.length ? light : collectVideosDeep(document, []);
@@ -43,7 +43,7 @@
     return !v.paused && !v.ended && v.readyState >= 2;
   }
 
-  // Hauptvideo: ein spielendes, sonst das größte
+  // Primary video: a playing one, otherwise the largest
   function primaryVideo() {
     const all = findVideos();
     const playing = all.filter(isPlaying);
@@ -78,7 +78,7 @@
     state.pausedByUs = [];
   }
 
-  // ───────────────────────── UI (Toast + Wach-Dialog) ─────────────────────────
+  // ───────────────────────── UI (toast + awake dialog) ─────────────────────────
   let uiRoot = null;
   let toastEl = null;
   let backdropEl = null;
@@ -134,9 +134,9 @@
       backdropEl.id = "hbo-controls-backdrop";
       backdropEl.innerHTML = `
         <div id="hbo-controls-modal" role="alertdialog" aria-modal="true">
-          <h2>Bist du noch wach? 💤</h2>
-          <p>Die Wiedergabe wurde wegen längerer Inaktivität angehalten.</p>
-          <button id="hbo-controls-btn" type="button">Ja, weiterschauen</button>
+          <h2>Are you still awake? 💤</h2>
+          <p>Playback was paused due to prolonged inactivity.</p>
+          <button id="hbo-controls-btn" type="button">Yes, keep watching</button>
         </div>`;
 
       uiRoot.append(toastEl, backdropEl);
@@ -148,8 +148,8 @@
     mountUi();
   }
 
-  // Im Vollbild (Element-Fullscreen) ist nur der Teilbaum des Vollbild-Elements sichtbar
-  // → UI dorthin umhängen. Bei <video> als Vollbild-Element geht das nicht.
+  // In fullscreen (element fullscreen) only the subtree of the fullscreen element is visible
+  // → move the UI there. This is not possible when <video> itself is the fullscreen element.
   function fullscreenElement() {
     return document.fullscreenElement || document.webkitFullscreenElement || null;
   }
@@ -218,27 +218,27 @@
     const hadPlayback = pauseAllPlaying() > 0;
     if (state.hold !== "awake") state.hold = "sleep";
     showToast(
-      hadPlayback ? "😴 Sleep Timer abgelaufen – Wiedergabe pausiert" : "😴 Sleep Timer abgelaufen",
+      hadPlayback ? "😴 Sleep timer expired – playback paused" : "😴 Sleep timer expired",
       8000
     );
   }
 
-  // ───────────────────────── Wach-Check ─────────────────────────
+  // ───────────────────────── Awake check ─────────────────────────
   function checkAwake(now, playing) {
     if (state.awakeMin <= 0 || state.modalOpen || state.hold || !playing) return;
     if (now - state.lastActivity >= state.awakeMin * 60 * 1000) openAwakeModal();
   }
 
-  // Nur echte Benutzereingaben zählen
+  // Only genuine user input counts
   let lastActivityWrite = 0;
   function onUserActivity(e) {
     if (!e.isTrusted) return;
     const now = Date.now();
-    if (state.modalOpen) return; // Dialog nur über Button/Enter schließen
+    if (state.modalOpen) return; // Close dialog only via button/Enter
     if (now - lastActivityWrite < 500) return;
     lastActivityWrite = now;
     state.lastActivity = now;
-    // Bewusste Eingabe löst die Sleep-Sperre
+    // Deliberate input releases the sleep lock
     if (state.hold === "sleep" && e.type !== "mousemove" && e.type !== "scroll") {
       state.hold = null;
     }
@@ -248,7 +248,7 @@
     window.addEventListener(evt, onUserActivity, { passive: true, capture: true });
   }
 
-  // Tastatur im Dialog: Enter / Leertaste / Esc bestätigen, nichts an HBO durchreichen
+  // Keyboard in dialog: Enter / Space / Esc confirm, pass nothing through to HBO
   window.addEventListener(
     "keydown",
     (e) => {
@@ -260,14 +260,14 @@
     true
   );
 
-  // ───────────────────────── Haupt-Tick ─────────────────────────
+  // ───────────────────────── Main tick ─────────────────────────
   function tick() {
     const now = Date.now();
     checkSleepTimer(now);
 
     const playing = findVideos().filter(isPlaying);
 
-    // Sperre: HBO startet Wiedergabe von selbst (z. B. nächste Folge) → wieder pausieren
+    // Lock: HBO starts playback on its own (e.g. next episode) → pause again
     if (state.hold && playing.length) {
       pauseAllPlaying();
       if (state.hold === "awake" && !state.modalOpen) openAwakeModal();
@@ -326,7 +326,7 @@
     }
     if ("sleepTimerEnd" in res) {
       const end = res.sleepTimerEnd || 0;
-      if (initial && end <= Date.now()) state.sleepHandled = end; // alter, abgelaufener Wert
+      if (initial && end <= Date.now()) state.sleepHandled = end; // stale, expired value
       state.sleepEnd = end;
     }
   }
@@ -347,7 +347,7 @@
     if (changes.autoNextEnabled) attemptAutoNext();
   });
 
-  // ───────────────────────── Nachrichten vom Panel ─────────────────────────
+  // ───────────────────────── Messages from the panel ─────────────────────────
   browser.runtime.onMessage.addListener((message) => {
     switch (message?.command) {
       case "ping":
@@ -375,28 +375,28 @@
         if (state.hold === "sleep") state.hold = null;
         if (state.sleepEnd > Date.now()) {
           const min = Math.max(1, Math.round((state.sleepEnd - Date.now()) / 60000));
-          showToast(`😴 Sleep Timer auf ${min} Min. gesetzt`);
+          showToast(`😴 Sleep timer set to ${min} min`);
         }
         break;
       case "cancel-sleep-timer":
         state.sleepEnd = 0;
         if (state.hold === "sleep") state.hold = null;
-        showToast("😴 Sleep Timer deaktiviert");
+        showToast("😴 Sleep timer disabled");
         break;
       case "set-awake-check":
         state.awakeMin = message.awakeCheckMinutes || 0;
         state.lastActivity = Date.now();
         showToast(
           state.awakeMin > 0
-            ? `💤 Wach-Check: nach ${state.awakeMin} Min. Inaktivität`
-            : "💤 Wach-Check deaktiviert"
+            ? `💤 Awake check: after ${state.awakeMin} min of inactivity`
+            : "💤 Awake check disabled"
         );
         break;
     }
     return Promise.resolve({ ok: true });
   });
 
-  // ───────────────────────── Tastenkürzel ─────────────────────────
+  // ───────────────────────── Keyboard shortcuts ─────────────────────────
   document.addEventListener(
     "keydown",
     (event) => {
