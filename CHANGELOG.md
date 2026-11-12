@@ -2,6 +2,14 @@
 
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [1.5.0] – 2026-11-12
+
+### Changed
+- Replaced timer dropdowns in the panel with mutually exclusive option buttons (`Off` and preset minutes, without debug values) plus a custom minute input field.
+
+### Fixed
+- Opening HBO Max from the Safari Start Page or another website no longer flashes "Not connected – reload the page" in the panel; the status now shows "Opening HBO Max …" and retries connection if Safari keeps the popover open while loading.
+
 ## [1.4.1] – 2026-11-12
 
 ### Changed

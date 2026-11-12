@@ -12,7 +12,7 @@
         <img src="icons/hbo-controls.svg" alt="">
         <div class="title-wrap">
           <span>HBO Max Controls</span>
-          <span class="version-tag">v1.4.1</span>
+          <span class="version-tag">v1.5.0</span>
         </div>
       </header>
 
@@ -28,35 +28,41 @@
           <span>Start next episode automatically</span>
         </label>
 
-        <div class="field-row">
-          <label for="sleep-timer-select">😴 Sleep Timer</label>
-          <select id="sleep-timer-select">
-            <option value="0">Off</option>
-            <option value="1">1 min (Debug)</option>
-            <option value="15">15 min</option>
-            <option value="30">30 min</option>
-            <option value="45">45 min</option>
-            <option value="60">60 min (1h)</option>
-            <option value="90">90 min</option>
-            <option value="120">120 min (2h)</option>
-          </select>
+        <div class="timer-block">
+          <div class="timer-label">😴 Sleep Timer</div>
+          <div id="sleep-timer-options" class="option-grid" role="group" aria-label="Sleep Timer">
+            <button type="button" class="pill" data-minutes="0" aria-pressed="false">Off</button>
+            <button type="button" class="pill" data-minutes="15" aria-pressed="false">15m</button>
+            <button type="button" class="pill" data-minutes="30" aria-pressed="false">30m</button>
+            <button type="button" class="pill" data-minutes="45" aria-pressed="false">45m</button>
+            <button type="button" class="pill" data-minutes="60" aria-pressed="false">60m</button>
+            <button type="button" class="pill" data-minutes="90" aria-pressed="false">90m</button>
+            <button type="button" class="pill" data-minutes="120" aria-pressed="false">120m</button>
+            <label class="custom-pill" for="sleep-timer-custom">
+              <input id="sleep-timer-custom" type="number" min="1" max="600" inputmode="numeric" placeholder="…" aria-label="Custom sleep timer in minutes">
+              <span>m</span>
+            </label>
+          </div>
         </div>
         <div id="sleep-timer-status" class="timer-status hidden">
           <span id="sleep-timer-countdown">⏱ --:--</span>
-          <button id="cancel-sleep-timer" class="small-btn">Stop</button>
+          <button id="cancel-sleep-timer" type="button" class="small-btn">Stop</button>
         </div>
 
-        <div class="field-row">
-          <label for="awake-check-select">💤 Awake Check</label>
-          <select id="awake-check-select">
-            <option value="0">Off</option>
-            <option value="1">1 min (Debug)</option>
-            <option value="5">5 min</option>
-            <option value="15">15 min</option>
-            <option value="30">30 min</option>
-            <option value="60">60 min (default)</option>
-            <option value="90">90 min</option>
-          </select>
+        <div class="timer-block">
+          <div class="timer-label">💤 Awake Check</div>
+          <div id="awake-check-options" class="option-grid" role="group" aria-label="Awake Check">
+            <button type="button" class="pill" data-minutes="0" aria-pressed="false">Off</button>
+            <button type="button" class="pill" data-minutes="5" aria-pressed="false">5m</button>
+            <button type="button" class="pill" data-minutes="15" aria-pressed="false">15m</button>
+            <button type="button" class="pill" data-minutes="30" aria-pressed="false">30m</button>
+            <button type="button" class="pill" data-minutes="60" aria-pressed="false">60m</button>
+            <button type="button" class="pill" data-minutes="90" aria-pressed="false">90m</button>
+            <label class="custom-pill span-2" for="awake-check-custom">
+              <input id="awake-check-custom" type="number" min="1" max="600" inputmode="numeric" placeholder="Custom" aria-label="Custom awake check in minutes">
+              <span>m</span>
+            </label>
+          </div>
         </div>
       </section>
       <div id="status" class="status">Connecting …</div>

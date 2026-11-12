@@ -46,13 +46,113 @@ if (autoNext) {
   });
 }
 
+// Shared helper for mutually exclusive preset pills + custom minute input
+function createTimerControl({ gridSelector, customInputSelector, onApply }) {
+  const grid = document.querySelector(gridSelector);
+  const pills = Array.from(grid.querySelectorAll(".pill"));
+  const customInput = document.querySelector(customInputSelector);
+  const customWrapper = customInput.closest(".custom-pill");
+  const presetValues = new Set(pills.map((p) => Number(p.dataset.minutes)));
+
+  let debounceTimer = null;
+  let lastApplied = null;
+
+  function clearPills() {
+    for (const pill of pills) {
+      pill.classList.remove("active");
+      pill.setAttribute("aria-pressed", "false");
+    }
+  }
+
+  function setUI(minutes) {
+    clearTimeout(debounceTimer);
+    if (presetValues.has(minutes)) {
+      for (const pill of pills) {
+        const active = Number(pill.dataset.minutes) === minutes;
+        pill.classList.toggle("active", active);
+        pill.setAttribute("aria-pressed", String(active));
+      }
+      customInput.value = "";
+      customWrapper.classList.remove("active");
+    } else if (minutes > 0) {
+      clearPills();
+      customInput.value = String(minutes);
+      customWrapper.classList.add("active");
+    } else {
+      setUI(0);
+    }
+  }
+
+  function commitCustom() {
+    clearTimeout(debounceTimer);
+    const raw = customInput.value.trim();
+    if (!raw) return;
+    const parsed = parseInt(raw, 10);
+    if (!Number.isFinite(parsed) || parsed < 0) return;
+
+    if (parsed === 0) {
+      setUI(0);
+      if (lastApplied !== 0) {
+        lastApplied = 0;
+        onApply(0);
+      }
+      return;
+    }
+
+    const mins = Math.min(600, parsed);
+    if (String(mins) !== raw) customInput.value = String(mins);
+    clearPills();
+    customWrapper.classList.add("active");
+    if (lastApplied !== mins) {
+      lastApplied = mins;
+      onApply(mins);
+    }
+  }
+
+  for (const pill of pills) {
+    pill.addEventListener("click", () => {
+      const mins = Number(pill.dataset.minutes);
+      setUI(mins);
+      lastApplied = mins;
+      onApply(mins);
+    });
+  }
+
+  customInput.addEventListener("input", () => {
+    clearTimeout(debounceTimer);
+    lastApplied = null;
+    const raw = customInput.value.trim();
+    if (!raw) {
+      customWrapper.classList.remove("active");
+      return;
+    }
+    const mins = parseInt(raw, 10);
+    if (Number.isFinite(mins) && mins > 0) {
+      clearPills();
+      customWrapper.classList.add("active");
+      debounceTimer = setTimeout(commitCustom, 600);
+    }
+  });
+
+  customInput.addEventListener("change", commitCustom);
+  customInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      commitCustom();
+      customInput.blur();
+    }
+  });
+
+  return { setUI };
+}
+
 // Sleep Timer
-const sleepTimerSelect = document.querySelector("#sleep-timer-select");
 const sleepTimerStatus = document.querySelector("#sleep-timer-status");
 const sleepTimerCountdown = document.querySelector("#sleep-timer-countdown");
 const cancelSleepTimerBtn = document.querySelector("#cancel-sleep-timer");
 
 let countdownInterval = null;
+let sleepControl = null;
 
 function formatRemaining(ms) {
   if (ms <= 0) return "00:00";
@@ -73,7 +173,7 @@ function updateSleepTimerUI(sleepTimerEnd) {
       if (remaining <= 0) {
         clearInterval(countdownInterval);
         sleepTimerStatus.classList.add("hidden");
-        sleepTimerSelect.value = "0";
+        sleepControl?.setUI(0);
       } else {
         sleepTimerCountdown.textContent = `⏱ ${formatRemaining(remaining)} remaining`;
       }
@@ -85,19 +185,7 @@ function updateSleepTimerUI(sleepTimerEnd) {
   }
 }
 
-browser.storage.local.get(["sleepTimerEnd", "sleepTimerMinutes"]).then(({ sleepTimerEnd, sleepTimerMinutes }) => {
-  const now = Date.now();
-  if (sleepTimerEnd && sleepTimerEnd > now) {
-    if (sleepTimerMinutes) sleepTimerSelect.value = String(sleepTimerMinutes);
-    updateSleepTimerUI(sleepTimerEnd);
-  } else {
-    sleepTimerSelect.value = "0";
-    updateSleepTimerUI(0);
-  }
-}).catch(() => {});
-
-sleepTimerSelect.addEventListener("change", () => {
-  const mins = parseInt(sleepTimerSelect.value, 10);
+function applySleepTimer(mins) {
   if (mins > 0) {
     const end = Date.now() + mins * 60 * 1000;
     browser.storage.local.set({ sleepTimerEnd: end, sleepTimerMinutes: mins }).catch(() => {});
@@ -108,63 +196,102 @@ sleepTimerSelect.addEventListener("change", () => {
     updateSleepTimerUI(0);
     send("cancel-sleep-timer");
   }
+}
+
+sleepControl = createTimerControl({
+  gridSelector: "#sleep-timer-options",
+  customInputSelector: "#sleep-timer-custom",
+  onApply: applySleepTimer,
 });
 
-cancelSleepTimerBtn.addEventListener("click", () => {
-  browser.storage.local.set({ sleepTimerEnd: 0, sleepTimerMinutes: 0 }).catch(() => {});
-  sleepTimerSelect.value = "0";
-  updateSleepTimerUI(0);
-  send("cancel-sleep-timer");
-});
-
-// Awake Check (inactivity check)
-const awakeCheckSelect = document.querySelector("#awake-check-select");
-browser.storage.local.get("awakeCheckMinutes").then(({ awakeCheckMinutes }) => {
-  if (typeof awakeCheckMinutes !== "undefined") {
-    awakeCheckSelect.value = String(awakeCheckMinutes);
+browser.storage.local.get(["sleepTimerEnd", "sleepTimerMinutes"]).then(({ sleepTimerEnd, sleepTimerMinutes }) => {
+  const now = Date.now();
+  if (sleepTimerEnd && sleepTimerEnd > now) {
+    sleepControl.setUI(sleepTimerMinutes || Math.max(1, Math.round((sleepTimerEnd - now) / 60000)));
+    updateSleepTimerUI(sleepTimerEnd);
   } else {
-    awakeCheckSelect.value = "60"; // Default: 60 min
+    sleepControl.setUI(0);
+    updateSleepTimerUI(0);
   }
 }).catch(() => {});
 
-awakeCheckSelect.addEventListener("change", () => {
-  const mins = parseInt(awakeCheckSelect.value, 10);
-  browser.storage.local.set({ awakeCheckMinutes: mins }).catch(() => {});
-  send("set-awake-check", { awakeCheckMinutes: mins });
+cancelSleepTimerBtn.addEventListener("click", () => {
+  sleepControl.setUI(0);
+  applySleepTimer(0);
 });
 
-// Smart Navigation on non-HBO tabs
+// Awake Check (inactivity check)
+const awakeControl = createTimerControl({
+  gridSelector: "#awake-check-options",
+  customInputSelector: "#awake-check-custom",
+  onApply: (mins) => {
+    browser.storage.local.set({ awakeCheckMinutes: mins }).catch(() => {});
+    send("set-awake-check", { awakeCheckMinutes: mins });
+  },
+});
+
+browser.storage.local.get("awakeCheckMinutes").then(({ awakeCheckMinutes }) => {
+  const mins = typeof awakeCheckMinutes === "number" ? awakeCheckMinutes : 60;
+  awakeControl.setUI(mins);
+}).catch(() => {
+  awakeControl.setUI(60);
+});
+
+// Smart Navigation on non-HBO tabs + Connection status
+async function pollStatus(tabId, statusEl, { retries = 6, delayMs = 350 } = {}) {
+  for (let attempt = 0; attempt <= retries; attempt++) {
+    try {
+      const res = await browser.tabs.sendMessage(tabId, { command: "get-status" });
+      if (res?.ok) {
+        statusEl.className = "status " + (res.hasVideo ? "ok" : "warn");
+        statusEl.textContent = res.hasVideo
+          ? (res.playing ? "● Connected – video playing" : "● Connected – video paused")
+          : "● Connected – no video found";
+        return;
+      }
+    } catch (_) {}
+    if (attempt < retries) {
+      await new Promise((r) => setTimeout(r, delayMs));
+    }
+  }
+  statusEl.className = "status err";
+  statusEl.textContent = "● Not connected – reload the page";
+}
+
 (async () => {
+  const statusEl = document.querySelector("#status");
   try {
     const [tab] = await browser.tabs.query({ active: true, currentWindow: true });
-    if (tab && !isHBO(tab)) {
+    if (!tab) return;
+
+    if (!isHBO(tab)) {
+      if (statusEl) {
+        statusEl.className = "status";
+        statusEl.textContent = "Opening HBO Max …";
+      }
+      let targetTabId = tab.id;
       if (tab.id && isSafariStartPage(tab)) {
         await browser.tabs.update(tab.id, { url: HBO_URL });
       } else {
-        await browser.tabs.create({ url: HBO_URL, active: true });
+        const created = await browser.tabs.create({ url: HBO_URL, active: true });
+        if (created?.id) targetTabId = created.id;
       }
       window.close();
+      setTimeout(() => window.close(), 80);
+      // Fallback if Safari keeps the popover open while the new/updated tab loads
+      if (statusEl && targetTabId) {
+        await pollStatus(targetTabId, statusEl, { retries: 15, delayMs: 400 });
+      }
+      return;
     }
-  } catch (_) {}
-})();
 
-// Connection status to the page (shows whether the content script is running and a video was found)
-(async () => {
-  const el = document.querySelector("#status");
-  if (!el) return;
-  try {
-    const [tab] = await browser.tabs.query({ active: true, currentWindow: true });
-    const res = await browser.tabs.sendMessage(tab.id, { command: "get-status" });
-    if (res?.ok) {
-      el.textContent = res.hasVideo
-        ? (res.playing ? "● Connected – video playing" : "● Connected – video paused")
-        : "● Connected – no video found";
-      el.classList.add(res.hasVideo ? "ok" : "warn");
-    } else {
-      throw new Error("no reply");
+    if (statusEl && tab.id) {
+      await pollStatus(tab.id, statusEl, { retries: 6, delayMs: 350 });
     }
   } catch (_) {
-    el.textContent = "● Not connected – reload the page";
-    el.classList.add("err");
+    if (statusEl) {
+      statusEl.className = "status err";
+      statusEl.textContent = "● Not connected – reload the page";
+    }
   }
 })();
