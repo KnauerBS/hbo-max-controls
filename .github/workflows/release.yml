@@ -1,0 +1,60 @@
+name: Release Package
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Existing release tag to attach the package to (e.g. v1.5.0)"
+        required: true
+        default: "v1.5.0"
+
+permissions:
+  contents: write
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Determine tag
+        id: meta
+        run: |
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            echo "tag=${{ inputs.tag }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "tag=${GITHUB_REF_NAME}" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Checkout tag
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ steps.meta.outputs.tag }}
+
+      - name: Build minimal release archive
+        env:
+          TAG: ${{ steps.meta.outputs.tag }}
+        run: |
+          STAGE="hbo-max-controls-${TAG}"
+          mkdir -p "$STAGE"
+          cp -R \
+            install.sh \
+            LICENSE \
+            "HBO Max Controls.xcodeproj" \
+            "HBO Max Controls" \
+            "HBO Max Controls Extension" \
+            "$STAGE/"
+          chmod +x "$STAGE/install.sh"
+          zip -r "hbo-max-controls-${TAG}.zip" "$STAGE"
+
+      - name: Upload asset to GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.meta.outputs.tag }}
+        run: |
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release upload "$TAG" "hbo-max-controls-${TAG}.zip" --clobber
+          else
+            gh release create "$TAG" "hbo-max-controls-${TAG}.zip" --title "$TAG" --generate-notes
+          fi

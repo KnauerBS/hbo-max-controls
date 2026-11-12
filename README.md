@@ -27,6 +27,8 @@ cd hbo-max-controls
 ./install.sh   # team ID is detected automatically; otherwise: DEVELOPMENT_TEAM=<ID> ./install.sh
 ```
 
+Alternatively, download the minimal `hbo-max-controls-v*.zip` archive from the [Releases](https://github.com/KnauerBS/hbo-max-controls/releases) page (contains only the Xcode project, extension files, `install.sh` and `LICENSE`), unzip it, and run `./install.sh`.
+
 Then in Safari: enable **Settings › Extensions › HBO Max Controls** and allow access to `hbomax.com` / "All Websites".
 
 > Without a valid signature (ad hoc), Safari only loads the extension with *Develop › Allow Unsigned Extensions* – and only until the next Safari restart.
