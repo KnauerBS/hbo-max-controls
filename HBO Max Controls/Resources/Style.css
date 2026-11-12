@@ -1,0 +1,176 @@
+* {
+    -webkit-user-select: none;
+    -webkit-user-drag: none;
+    cursor: default;
+    box-sizing: border-box;
+}
+
+:root {
+    color-scheme: light dark;
+    --spacing: 16px;
+    --radius: 12px;
+
+    --color-ok: #28a745;
+    --color-warn: #e6a817;
+    --color-err: #dc3545;
+    --color-unknown: #888;
+
+    --bg-card: rgba(0,0,0,0.05);
+    --border: rgba(0,0,0,0.1);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-card: rgba(255,255,255,0.06);
+        --border: rgba(255,255,255,0.1);
+    }
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing);
+    padding: calc(var(--spacing) * 1.5);
+    font: -apple-system-short-body;
+    text-align: center;
+}
+
+/* ── Header ── */
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+h1 {
+    margin: 0;
+    font-size: 1.1em;
+    font-weight: 600;
+    opacity: 0.9;
+}
+
+/* ── Status Card ── */
+.status-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: var(--spacing);
+    width: 100%;
+    max-width: 340px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* ── Status Badge ── */
+.status-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-weight: 600;
+    font-size: 1em;
+}
+
+.status-icon {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    background: var(--color-unknown);
+}
+
+/* Badge farbe je nach body-Klasse */
+body.state-on    .status-icon { background: var(--color-ok); }
+body.state-off   .status-icon { background: var(--color-warn); }
+body.state-error .status-icon { background: var(--color-err); }
+body.state-not-in-applications .status-icon { background: var(--color-warn); }
+
+/* ── Status-Text Sichtbarkeit ── */
+.status-text { display: none; }
+body:not(.state-on, .state-off, .state-error, .state-not-in-applications) .status-text.state-unknown { display: inline; }
+body.state-on   .status-text.state-on   { display: inline; }
+body.state-off  .status-text.state-off  { display: inline; }
+body.state-error .status-text.state-error { display: inline; }
+body.state-not-in-applications .status-text.state-not-in-applications { display: inline; }
+
+/* ── Instructions ── */
+.instructions { text-align: left; }
+
+.hint { margin: 0; font-size: 0.9em; line-height: 1.5; }
+
+.steps {
+    margin: 0;
+    padding-left: 20px;
+    font-size: 0.88em;
+    line-height: 1.8;
+    color: inherit;
+    opacity: 0.85;
+}
+
+/* Anleitung ausblenden wenn Extension aktiv */
+body.state-on .instructions { display: none; }
+
+/* Not-in-applications Hinweis nur bei diesem Zustand */
+.hint.state-not-in-applications { display: none; }
+body.state-not-in-applications .hint.state-not-in-applications { display: block; }
+body.state-not-in-applications .steps { display: none; }
+
+/* Steps ausblenden wenn on oder not-in-applications */
+body.state-not-in-applications .steps { display: none; }
+
+/* ── Success hint ── */
+.success-hint { display: none; margin: 0; font-size: 0.9em; }
+body.state-on .success-hint { display: block; }
+
+/* ── Action Buttons ── */
+.actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    max-width: 340px;
+}
+
+button {
+    font-size: 0.9em;
+    padding: 9px 16px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    font: -apple-system-short-body;
+    font-size: 0.9em;
+}
+
+.btn-primary {
+    background: -apple-system-blue;
+    background-color: #0071e3;
+    color: white;
+    font-weight: 600;
+}
+.btn-primary:hover  { background-color: #0077ed; }
+.btn-primary:active { background-color: #005bb5; }
+
+.btn-secondary {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    opacity: 0.75;
+}
+.btn-secondary:hover  { opacity: 1; }
+
+/* ── Refresh hint ── */
+.refresh-hint {
+    font-size: 0.78em;
+    opacity: 0.45;
+    margin: 0;
+}

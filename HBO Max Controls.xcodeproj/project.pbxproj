@@ -1,0 +1,625 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		84496F3B305B4AE700588006 /* background.js in Resources */ = {isa = PBXBuildFile; fileRef = 84496F3A305B4AE700588006 /* background.js */; };
+		84728F6E304F95A4002D6DCD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84728F6D304F95A4002D6DCD /* AppDelegate.swift */; };
+		84728F72304F95A4002D6DCD /* Main.html in Resources */ = {isa = PBXBuildFile; fileRef = 84728F70304F95A4002D6DCD /* Main.html */; };
+		84728F74304F95A4002D6DCD /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 84728F73304F95A4002D6DCD /* Icon.png */; };
+		84728F76304F95A4002D6DCD /* Style.css in Resources */ = {isa = PBXBuildFile; fileRef = 84728F75304F95A4002D6DCD /* Style.css */; };
+		84728F78304F95A4002D6DCD /* Script.js in Resources */ = {isa = PBXBuildFile; fileRef = 84728F77304F95A4002D6DCD /* Script.js */; };
+		84728F7A304F95A4002D6DCD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84728F79304F95A4002D6DCD /* ViewController.swift */; };
+		84728F7D304F95A4002D6DCD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84728F7B304F95A4002D6DCD /* Main.storyboard */; };
+		84728F7F304F95A6002D6DCD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84728F7E304F95A6002D6DCD /* Assets.xcassets */; };
+		84728F86304F95A6002D6DCD /* HBO Max Controls Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 84728F85304F95A6002D6DCD /* HBO Max Controls Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		84728F8B304F95A6002D6DCD /* SafariWebExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84728F8A304F95A6002D6DCD /* SafariWebExtensionHandler.swift */; };
+		84728F9A304F95A7002D6DCD /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 84728F97304F95A7002D6DCD /* README.md */; };
+		84728F9B304F95A7002D6DCD /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = 84728F98304F95A7002D6DCD /* manifest.json */; };
+		84728F9C304F95A7002D6DCD /* content.js in Resources */ = {isa = PBXBuildFile; fileRef = 84728F99304F95A7002D6DCD /* content.js */; };
+		A1B2C3D40100000100000001 /* popup.html in Resources */ = {isa = PBXBuildFile; fileRef = A1B2C3D40100000100000002 /* popup.html */; };
+		A1B2C3D40100000100000003 /* popup.js in Resources */ = {isa = PBXBuildFile; fileRef = A1B2C3D40100000100000004 /* popup.js */; };
+		A1B2C3D40100000100000005 /* popup.css in Resources */ = {isa = PBXBuildFile; fileRef = A1B2C3D40100000100000006 /* popup.css */; };
+		A1B2C3D40100000100000007 /* icons in Resources */ = {isa = PBXBuildFile; fileRef = A1B2C3D40100000100000008 /* icons */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		84728F87304F95A6002D6DCD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 84728F62304F95A4002D6DCD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 84728F84304F95A6002D6DCD;
+			remoteInfo = "HBO Max Controls Extension";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		84728F92304F95A6002D6DCD /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				84728F86304F95A6002D6DCD /* HBO Max Controls Extension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		84496F3A305B4AE700588006 /* background.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = background.js; sourceTree = "<group>"; };
+		84728F6A304F95A4002D6DCD /* HBO Max Controls.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HBO Max Controls.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		84728F6D304F95A4002D6DCD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		84728F71304F95A4002D6DCD /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = Base; path = Base.lproj/Main.html; sourceTree = "<group>"; };
+		84728F73304F95A4002D6DCD /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		84728F75304F95A4002D6DCD /* Style.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = Style.css; sourceTree = "<group>"; };
+		84728F77304F95A4002D6DCD /* Script.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = Script.js; sourceTree = "<group>"; };
+		84728F79304F95A4002D6DCD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		84728F7C304F95A4002D6DCD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		84728F7E304F95A6002D6DCD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		84728F80304F95A6002D6DCD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		84728F85304F95A6002D6DCD /* HBO Max Controls Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "HBO Max Controls Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		84728F8A304F95A6002D6DCD /* SafariWebExtensionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariWebExtensionHandler.swift; sourceTree = "<group>"; };
+		84728F8C304F95A6002D6DCD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		84728F97304F95A7002D6DCD /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = Resources/README.md; sourceTree = "<group>"; };
+		84728F98304F95A7002D6DCD /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = manifest.json; path = Resources/manifest.json; sourceTree = "<group>"; };
+		84728F99304F95A7002D6DCD /* content.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = content.js; path = Resources/content.js; sourceTree = "<group>"; };
+		A1B2C3D40100000100000002 /* popup.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = popup.html; path = Resources/popup.html; sourceTree = "<group>"; };
+		A1B2C3D40100000100000004 /* popup.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = popup.js; path = Resources/popup.js; sourceTree = "<group>"; };
+		A1B2C3D40100000100000006 /* popup.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; name = popup.css; path = Resources/popup.css; sourceTree = "<group>"; };
+		A1B2C3D40100000100000008 /* icons */ = {isa = PBXFileReference; lastKnownFileType = folder; name = icons; path = Resources/icons; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		84728F67304F95A4002D6DCD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		84728F82304F95A6002D6DCD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		84728F61304F95A4002D6DCD = {
+			isa = PBXGroup;
+			children = (
+				84728F6C304F95A4002D6DCD /* HBO Max Controls */,
+				84728F89304F95A6002D6DCD /* HBO Max Controls Extension */,
+				84728F6B304F95A4002D6DCD /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		84728F6B304F95A4002D6DCD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				84728F6A304F95A4002D6DCD /* HBO Max Controls.app */,
+				84728F85304F95A6002D6DCD /* HBO Max Controls Extension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		84728F6C304F95A4002D6DCD /* HBO Max Controls */ = {
+			isa = PBXGroup;
+			children = (
+				84728F6D304F95A4002D6DCD /* AppDelegate.swift */,
+				84728F79304F95A4002D6DCD /* ViewController.swift */,
+				84728F7B304F95A4002D6DCD /* Main.storyboard */,
+				84728F7E304F95A6002D6DCD /* Assets.xcassets */,
+				84728F80304F95A6002D6DCD /* Info.plist */,
+				84728F6F304F95A4002D6DCD /* Resources */,
+			);
+			path = "HBO Max Controls";
+			sourceTree = "<group>";
+		};
+		84728F6F304F95A4002D6DCD /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				84728F70304F95A4002D6DCD /* Main.html */,
+				84728F73304F95A4002D6DCD /* Icon.png */,
+				84728F75304F95A4002D6DCD /* Style.css */,
+				84728F77304F95A4002D6DCD /* Script.js */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		84728F89304F95A6002D6DCD /* HBO Max Controls Extension */ = {
+			isa = PBXGroup;
+			children = (
+				84728F96304F95A7002D6DCD /* Resources */,
+				84728F8A304F95A6002D6DCD /* SafariWebExtensionHandler.swift */,
+				84728F8C304F95A6002D6DCD /* Info.plist */,
+			);
+			path = "HBO Max Controls Extension";
+			sourceTree = "<group>";
+		};
+		84728F96304F95A7002D6DCD /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				84496F3A305B4AE700588006 /* background.js */,
+				84728F97304F95A7002D6DCD /* README.md */,
+				84728F98304F95A7002D6DCD /* manifest.json */,
+				84728F99304F95A7002D6DCD /* content.js */,
+				A1B2C3D40100000100000002 /* popup.html */,
+				A1B2C3D40100000100000004 /* popup.js */,
+				A1B2C3D40100000100000006 /* popup.css */,
+				A1B2C3D40100000100000008 /* icons */,
+			);
+			name = Resources;
+			path = "HBO Max Controls Extension";
+			sourceTree = SOURCE_ROOT;
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		84728F69304F95A4002D6DCD /* HBO Max Controls */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 84728F93304F95A6002D6DCD /* Build configuration list for PBXNativeTarget "HBO Max Controls" */;
+			buildPhases = (
+				84728F66304F95A4002D6DCD /* Sources */,
+				84728F67304F95A4002D6DCD /* Frameworks */,
+				84728F68304F95A4002D6DCD /* Resources */,
+				84728F92304F95A6002D6DCD /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				84728F88304F95A6002D6DCD /* PBXTargetDependency */,
+			);
+			name = "HBO Max Controls";
+			packageProductDependencies = (
+			);
+			productName = "HBO Max Controls";
+			productReference = 84728F6A304F95A4002D6DCD /* HBO Max Controls.app */;
+			productType = "com.apple.product-type.application";
+		};
+		84728F84304F95A6002D6DCD /* HBO Max Controls Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 84728F8F304F95A6002D6DCD /* Build configuration list for PBXNativeTarget "HBO Max Controls Extension" */;
+			buildPhases = (
+				84728F81304F95A6002D6DCD /* Sources */,
+				84728F82304F95A6002D6DCD /* Frameworks */,
+				84728F83304F95A6002D6DCD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "HBO Max Controls Extension";
+			packageProductDependencies = (
+			);
+			productName = "HBO Max Controls Extension";
+			productReference = 84728F85304F95A6002D6DCD /* HBO Max Controls Extension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		84728F62304F95A4002D6DCD /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2660;
+				LastUpgradeCheck = 2660;
+				TargetAttributes = {
+					84728F69304F95A4002D6DCD = {
+						CreatedOnToolsVersion = 26.6;
+					};
+					84728F84304F95A6002D6DCD = {
+						CreatedOnToolsVersion = 26.6;
+					};
+				};
+			};
+			buildConfigurationList = 84728F65304F95A4002D6DCD /* Build configuration list for PBXProject "HBO Max Controls" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 84728F61304F95A4002D6DCD;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 84728F6B304F95A4002D6DCD /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				84728F69304F95A4002D6DCD /* HBO Max Controls */,
+				84728F84304F95A6002D6DCD /* HBO Max Controls Extension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		84728F68304F95A4002D6DCD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84728F74304F95A4002D6DCD /* Icon.png in Resources */,
+				84728F7D304F95A4002D6DCD /* Main.storyboard in Resources */,
+				84728F78304F95A4002D6DCD /* Script.js in Resources */,
+				84728F72304F95A4002D6DCD /* Main.html in Resources */,
+				84728F7F304F95A6002D6DCD /* Assets.xcassets in Resources */,
+				84728F76304F95A4002D6DCD /* Style.css in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		84728F83304F95A6002D6DCD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84728F9C304F95A7002D6DCD /* content.js in Resources */,
+				84728F9B304F95A7002D6DCD /* manifest.json in Resources */,
+				84728F9A304F95A7002D6DCD /* README.md in Resources */,
+				A1B2C3D40100000100000001 /* popup.html in Resources */,
+				A1B2C3D40100000100000003 /* popup.js in Resources */,
+				A1B2C3D40100000100000005 /* popup.css in Resources */,
+				84496F3B305B4AE700588006 /* background.js in Resources */,
+				A1B2C3D40100000100000007 /* icons in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		84728F66304F95A4002D6DCD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84728F7A304F95A4002D6DCD /* ViewController.swift in Sources */,
+				84728F6E304F95A4002D6DCD /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		84728F81304F95A6002D6DCD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84728F8B304F95A6002D6DCD /* SafariWebExtensionHandler.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		84728F88304F95A6002D6DCD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 84728F84304F95A6002D6DCD /* HBO Max Controls Extension */;
+			targetProxy = 84728F87304F95A6002D6DCD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		84728F70304F95A4002D6DCD /* Main.html */ = {
+			isa = PBXVariantGroup;
+			children = (
+				84728F71304F95A4002D6DCD /* Base */,
+			);
+			name = Main.html;
+			sourceTree = "<group>";
+		};
+		84728F7B304F95A4002D6DCD /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				84728F7C304F95A4002D6DCD /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		84728F8D304F95A6002D6DCD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		84728F8E304F95A6002D6DCD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		84728F90304F95A6002D6DCD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "HBO Max Controls Extension/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "HBO Max Controls Extension";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.local.HBO-Max-Controls.Extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		84728F91304F95A6002D6DCD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "HBO Max Controls Extension/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "HBO Max Controls Extension";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.local.HBO-Max-Controls.Extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		84728F94304F95A6002D6DCD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "HBO Max Controls/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "HBO Max Controls";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+					"-framework",
+					WebKit,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.local.HBO-Max-Controls";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		84728F95304F95A6002D6DCD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "HBO Max Controls/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "HBO Max Controls";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+					"-framework",
+					WebKit,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.local.HBO-Max-Controls";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		84728F65304F95A4002D6DCD /* Build configuration list for PBXProject "HBO Max Controls" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				84728F8D304F95A6002D6DCD /* Debug */,
+				84728F8E304F95A6002D6DCD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		84728F8F304F95A6002D6DCD /* Build configuration list for PBXNativeTarget "HBO Max Controls Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				84728F90304F95A6002D6DCD /* Debug */,
+				84728F91304F95A6002D6DCD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		84728F93304F95A6002D6DCD /* Build configuration list for PBXNativeTarget "HBO Max Controls" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				84728F94304F95A6002D6DCD /* Debug */,
+				84728F95304F95A6002D6DCD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 84728F62304F95A4002D6DCD /* Project object */;
+}

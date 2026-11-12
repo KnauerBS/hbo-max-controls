@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="../Style.css">
+    <script src="../Script.js" defer></script>
+</head>
+<body>
+    <header>
+        <img src="../Icon.png" width="80" height="80" alt="HBO Max Controls Icon">
+        <h1>HBO Max Controls</h1>
+    </header>
+
+    <div class="status-card">
+        <div class="status-badge">
+            <span class="status-icon"></span>
+            <span class="status-text state-unknown">Status wird geprüft …</span>
+            <span class="status-text state-on">Erweiterung aktiv</span>
+            <span class="status-text state-off">Erweiterung inaktiv</span>
+            <span class="status-text state-error">Erweiterung nicht gefunden</span>
+            <span class="status-text state-not-in-applications">App nicht in Programme</span>
+        </div>
+
+        <!-- Anleitung: nur wenn nicht aktiv -->
+        <div class="instructions">
+            <p class="hint state-not-in-applications">
+                ⚠️ Die App muss in <strong>/Programme</strong> liegen, damit Safari die Erweiterung erkennt.
+                Bitte verschiebe die App nach Programme und starte sie neu.
+            </p>
+            <ol class="steps state-off state-error state-unknown">
+                <li>Stelle sicher, dass die App in <strong>Programme</strong> liegt</li>
+                <li>Öffne <strong>Safari → Einstellungen → Erweiterungen</strong></li>
+                <li>Setze den Haken bei <strong>HBO Max Controls</strong></li>
+                <li>Kehre hierher zurück – der Status aktualisiert sich</li>
+            </ol>
+        </div>
+
+        <p class="success-hint state-on">
+            ✅ Alles bereit. Das Popup der Erweiterung erscheint in der Safari-Toolbar.
+        </p>
+    </div>
+
+    <div class="actions">
+        <button class="btn-primary open-preferences">Safari Erweiterungen öffnen</button>
+        <button class="btn-secondary open-settings-url">Safari direkt öffnen (Fallback)</button>
+    </div>
+
+    <p class="refresh-hint">Nach dem Aktivieren in Safari: App neu starten um den Status zu sehen.</p>
+</body>
+</html>
