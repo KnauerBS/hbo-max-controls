@@ -2,6 +2,11 @@
 
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [1.6.0] – 2026-11-12
+
+### Added
+- Highlights and focuses the "Skip Intro" button with a purple outline/glow when visible, allowing it to be triggered directly with `Space` or `Enter`.
+
 ## [1.5.0] – 2026-11-12
 
 ### Changed

@@ -12,6 +12,7 @@ A local Safari web extension (macOS) for HBO Max: fine-grained seeking, next epi
 | Feature | Description |
 | --- | --- |
 | Seeking | ±0.5 s via `⌥⌘,` / `⌥⌘.` |
+| Skip intro | Highlights the "Skip Intro" button and lets you trigger it with `Space` or `Enter` |
 | Next episode | `⌥N`, or start automatically (toggle in the panel) |
 | Sleep timer | Pauses after 15–120 min; prevents the next episode from continuing |
 | Awake check | Pauses after a configurable period of inactivity and asks "Are you still awake?" (also in fullscreen) |

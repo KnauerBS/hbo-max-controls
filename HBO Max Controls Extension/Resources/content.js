@@ -274,12 +274,72 @@
     }
 
     checkAwake(now, playing.length > 0);
+    syncSkipIntroHighlight();
   }
 
   setInterval(tick, TICK_MS);
   document.addEventListener("visibilitychange", tick);
 
-  // ───────────────────────── Navigation ─────────────────────────
+  // ───────────────────────── Navigation & Skip Intro ─────────────────────────
+  const SKIP_HIGHLIGHT_CLASS = "hbo-controls-skip-highlight";
+  let activeSkipBtn = null;
+
+  function isElementVisible(el) {
+    if (!el || !el.isConnected) return false;
+    const rect = el.getBoundingClientRect();
+    if (rect.width <= 0 || rect.height <= 0) return false;
+    const style = getComputedStyle(el);
+    return style.display !== "none" && style.visibility !== "hidden" && parseFloat(style.opacity) > 0.05;
+  }
+
+  function findSkipIntroButton() {
+    const selectors = [
+      '[data-testid="skip-button"]',
+      '[data-testid*="skip-intro"]',
+      '[data-testid*="skipIntro"]',
+      '[class*="SkipIntro"]',
+      '[class*="skip-intro"]',
+    ];
+    for (const sel of selectors) {
+      for (const el of document.querySelectorAll(sel)) {
+        if (isElementVisible(el)) return el;
+      }
+    }
+    for (const c of document.querySelectorAll("button, [role=button]")) {
+      const label = `${c.getAttribute("aria-label") || ""} ${c.textContent || ""}`;
+      if (/skip\s*intro|intro\s*überspringen/i.test(label) && isElementVisible(c)) {
+        return c;
+      }
+    }
+    return null;
+  }
+
+  function syncSkipIntroHighlight() {
+    const btn = !state.hold && !state.modalOpen ? findSkipIntroButton() : null;
+    if (activeSkipBtn && activeSkipBtn !== btn) {
+      activeSkipBtn.classList.remove(SKIP_HIGHLIGHT_CLASS);
+      if (document.activeElement === activeSkipBtn) activeSkipBtn.blur();
+      activeSkipBtn = null;
+    }
+    if (btn) {
+      injectStyles();
+      if (!btn.classList.contains(SKIP_HIGHLIGHT_CLASS)) {
+        btn.classList.add(SKIP_HIGHLIGHT_CLASS);
+      }
+      const active = document.activeElement;
+      const typing =
+        active instanceof HTMLInputElement ||
+        active instanceof HTMLTextAreaElement ||
+        active?.isContentEditable;
+      if (!typing && active !== btn) {
+        try {
+          btn.focus({ preventScroll: true });
+        } catch (_) {}
+      }
+      activeSkipBtn = btn;
+    }
+  }
+
   function seekBy(seconds) {
     const v = primaryVideo();
     if (v) v.currentTime += seconds;
@@ -313,7 +373,16 @@
     }, 150);
   }
 
-  new MutationObserver(attemptAutoNext).observe(document.documentElement, {
+  let skipSyncTimer;
+  function scheduleSkipSync() {
+    clearTimeout(skipSyncTimer);
+    skipSyncTimer = setTimeout(syncSkipIntroHighlight, 80);
+  }
+
+  new MutationObserver(() => {
+    attemptAutoNext();
+    scheduleSkipSync();
+  }).observe(document.documentElement, {
     childList: true,
     subtree: true,
   });
@@ -404,6 +473,26 @@
       if (event.shiftKey || event.repeat) return;
       const t = event.target;
       if (t instanceof HTMLInputElement || t instanceof HTMLTextAreaElement || t?.isContentEditable) return;
+
+      const isSkipKey =
+        !event.metaKey &&
+        !event.ctrlKey &&
+        !event.altKey &&
+        (event.code === "Space" || event.code === "Enter");
+      if (isSkipKey) {
+        const skipBtn =
+          activeSkipBtn && isElementVisible(activeSkipBtn)
+            ? activeSkipBtn
+            : findSkipIntroButton();
+        if (skipBtn) {
+          event.preventDefault();
+          event.stopImmediatePropagation();
+          skipBtn.click();
+          state.lastActivity = Date.now();
+          setTimeout(syncSkipIntroHighlight, 50);
+          return;
+        }
+      }
 
       const seekShortcut = event.metaKey && event.altKey && !event.ctrlKey;
       const nextShortcut = event.altKey && !event.metaKey && !event.ctrlKey && event.code === "KeyN";
